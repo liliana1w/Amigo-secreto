@@ -1,33 +1,36 @@
-// Código mejorado
-let listaNombres = [];
-let amigoSecreto = "";
+// Declaración de variables globales
+let listaNombres = []; // Array para almacenar los nombres de los participantes
+let amigoSecreto = ""; // Variable para almacenar el nombre del amigo secreto sorteado
 
+// Función para agregar un nombre a la lista
 function agregarNombre() {
-  let nombre = document.getElementById("nombre").value;
-  if (nombre.trim() !== "") {
-    listaNombres.push(nombre);
-    document.getElementById("listaNombres").innerHTML += `<li>${nombre}</li>`;
-    document.getElementById("nombre").value = "";
+  let nombre = document.getElementById("nombre").value; // Obtiene el valor del campo de entrada de nombre
+  if (nombre.trim() !== "") { // Verifica si el nombre no está vacío después de eliminar espacios en blanco
+    listaNombres.push(nombre); // Agrega el nombre a la lista de nombres
+    document.getElementById("listaNombres").innerHTML += `<li>${nombre}</li>`; // Agrega el nombre a la lista visual en la página
+    document.getElementById("nombre").value = ""; // Limpia el campo de entrada de nombre
   }
 }
 
+// Función para sortear el amigo secreto
 function sortearAmigoSecreto() {
-  if (listaNombres.length > 1) {
-    let indiceAmigoSecreto = Math.floor(Math.random() * listaNombres.length);
-    amigoSecreto = listaNombres[indiceAmigoSecreto];
-    document.getElementById("amigoSecreto").innerHTML = amigoSecreto;
+  if (listaNombres.length > 1) { // Verifica si hay al menos 2 nombres en la lista
+    let indiceAmigoSecreto = Math.floor(Math.random() * listaNombres.length); // Genera un índice aleatorio dentro del rango de la lista
+    amigoSecreto = listaNombres[indiceAmigoSecreto]; // Obtiene el nombre del amigo secreto usando el índice aleatorio
+    document.getElementById("amigoSecreto").innerHTML = amigoSecreto; // Muestra el nombre del amigo secreto en la página
   } else {
-    alert("Necesitas agregar al menos 2 nombres para realizar el sorteo.");
+    alert("Necesitas agregar al menos 2 nombres para realizar el sorteo."); // Muestra una alerta si no hay suficientes nombres
   }
 }
 
+// Función para reiniciar el sorteo
 function reiniciarSorteo() {
-  listaNombres = [];
-  document.getElementById("listaNombres").innerHTML = "";
-  document.getElementById("amigoSecreto").innerHTML = "";
+  listaNombres = []; // Limpia la lista de nombres
+  document.getElementById("listaNombres").innerHTML = ""; // Limpia la lista visual en la página
+  document.getElementById("amigoSecreto").innerHTML = ""; // Limpia el nombre del amigo secreto en la página
 }
 
-// Comandos
-document.getElementById("agregarNombreBtn").addEventListener("click", agregarNombre);
-document.getElementById("sortearAmigoBtn").addEventListener("click", sortearAmigoSecreto);
-document.getElementById("reiniciarBtn").addEventListener("click", reiniciarSorteo);
+// Event listeners para los botones
+document.getElementById("agregarNombreBtn").addEventListener("click", agregarNombre); // Asocia la función agregarNombre al botón "Agregar nombre"
+document.getElementById("sortearAmigoBtn").addEventListener("click", sortearAmigoSecreto); // Asocia la función sortearAmigoSecreto al botón "Sortear amigo"
+document.getElementById("reiniciarBtn").addEventListener("click", reiniciarSorteo); // Asocia la función reiniciarSorteo al botón "Reiniciar"
